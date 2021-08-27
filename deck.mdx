@@ -1,0 +1,353 @@
+import { swiss } from "mdx-deck/themes";
+import {
+  CodeSurfer,
+  CodeSurferColumns,
+  Step,
+} from "code-surfer";
+
+import { github, dracula } from "@code-surfer/themes";
+
+export const theme = dracula;
+
+# O que vamos aprender
+
+Problema > Contexto > Solução
+
+---
+
+# Problema
+
+- Shared State
+- Prop drilling
+- Side effects
+
+---
+
+# Contexto
+
+- Origens do Redux
+- Principios do Redux
+- Pros e Cons
+
+---
+
+# Solução
+
+- Vamos recriar o codigo do redux do zero
+- Mitos e erros
+- O futuro do Redux
+
+---
+
+# O que é o Redux ?
+
+Redux é uma lib que faz o controle de fluxo de dados ou "State"
+
+---
+
+# Precisamos de uma state lib ?
+
+<img width="400" src="https://i.imgur.com/haiPFBT.gif" />
+
+---
+
+# Lidando com state
+
+<img
+  width="400"
+  src="https://cdn.whatagraph.com/blog/facebook-notifications.jpg"
+/>
+
+---
+
+<img
+  width="800"
+  src="https://www.freecodecamp.org/news/content/images/2020/04/Screenshot-2020-04-16-at-6.38.14-PM.png"
+/>
+
+---
+
+<img
+  width="800"
+  src="https://jmsliu.com/wp-content/uploads/2016/07/flux-simple-f8-diagram-explained-1300w-1024x558.png"
+/>
+
+---
+
+<CodeSurfer>
+
+```js
+import { ReduceStore } from "flux/utils";
+
+class CounterStore extends ReduceStore {
+  getInitialState() {
+    return 0;
+  }
+
+  reduce(state, action) {
+    switch (action.type) {
+      case "increment":
+        return state + 1;
+
+      case "square":
+        return state * state;
+
+      default:
+        return state;
+    }
+  }
+}
+```
+
+```diff 8[1:25],9[1:25],10[1:25],11[1:25]
+
+```
+
+</CodeSurfer>
+
+---
+
+# Prop drilling 💩
+
+---
+
+<CodeSurfer>
+
+```jsx
+function App() {
+  const user = getUser();
+  return <Dashboad user={user} />;
+}
+
+function Dashboad({ user }) {
+  return <Home user={user} />;
+}
+
+function Home({ user }) {
+  return (
+    <>
+      <Settings user={user} />
+      <Create user={user} />
+    </>
+  );
+}
+```
+
+</CodeSurfer>
+
+---
+
+# Bonus 💩
+
+<CodeSurfer>
+
+```jsx
+function App() {
+  const { ...items } = getUser();
+  return <Dashboad {...props} />;
+}
+
+function Dashboad(props) {
+  return <Home {...props} />;
+}
+```
+
+</CodeSurfer>
+
+---
+
+# Redux
+
+<img
+  width="800"
+  src="https://miro.medium.com/max/919/1*BcmtHcMHN6PT7IniIWniHg.png"
+/>
+
+---
+
+# Redux
+
+<img
+  width="800"
+  src="https://miro.medium.com/max/1838/1*XEVxovodur9doQW-GJ6MLA.gif"
+/>
+
+# Principles of Redux
+
+- Single source of truth 🔩
+- State is read-only 👓
+- Changes are made with pure functions ♻️
+
+---
+
+# Single source of truth 🔩
+
+<CodeSurfer>
+
+```js
+console.log(store.getState());
+
+{
+  todos: [
+    { text: "Consider using Redux", completed: true },
+  ];
+}
+```
+
+</CodeSurfer>
+
+---
+
+# State is read-only 👓
+
+<CodeSurfer>
+
+```js
+store.dispatch({
+  type: "SET_VISIBILITY_FILTER",
+  filter: "SHOW_COMPLETED",
+});
+```
+
+</CodeSurfer>
+
+---
+
+# Changes are made with pure functions
+
+<CodeSurfer>
+
+```js
+function visibilityFilter(state = "SHOW_ALL", action) {
+  switch (action.type) {
+    case "SET_VISIBILITY_FILTER":
+      return action.filter;
+    default:
+      return state;
+  }
+}
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```js
+const INITIAL_STATE = { count: 0 };
+```
+
+```js
+const INITIAL_STATE = { count: 0 };
+
+const actions = { type: "ANOTHER", payload: "" };
+```
+
+```js
+const INITIAL_STATE = { count: 0 };
+
+const actions = { type: "ANOTHER", payload: "" };
+
+const reducer = (state = {}, action) => {
+  switch (action.type) {
+    case "ANOTHER":
+      return {
+        ...state,
+        payload: action.payload,
+      };
+  }
+};
+```
+
+</CodeSurfer>
+
+---
+
+# Redux do zero !
+
+porque eu so acredito vendo 👀 !
+
+---
+
+# Pros 👍
+
+- State centralizado
+- State Previsivel
+- Facil de debugar
+- TIME TRAVEL
+- Funciona com outros Frameworks
+
+---
+
+# Cons 👎
+
+- Functional Programing
+- Verbose
+- Boilerplate ???
+
+---
+
+# Mitos e erros 🤦‍♂️
+
+1. Redux Morreu ?
+2. Redux é lento ?
+3. Redux é escalavel ?
+
+---
+
+# Redux NÃO MORREU ☠️ !
+
+<img src="https://user-images.githubusercontent.com/2996754/87447095-269a5100-c5c8-11ea-9fd7-efca63696630.png" />
+
+---
+
+# Redux NÃO MORREU ☠️ !
+
+- React: 9.5M
+- Redux: 5M
+- Apollo: 1.3M
+- XState: 750K
+- MobX: 600K
+- React Query: 250K
+- SWR: 250K
+- Recoil: 60K
+- Zustand: 40K
+
+---
+
+# Redux NÃO MORREU ☠️ !
+
+- Redux: 45-50%
+- Apollo: 15%
+- XState: 8%
+
+---
+
+# Redux é Lento 🏎 ?
+
+NOP! 90% das vezes o que é lento é o seu codigo react
+
+---
+
+# Redux é escalavel 🚀?
+
+YES !!!!
+
+---
+
+# Quando não utilizar o Redux 🙅‍♂️
+
+- Apenas para passar props (use context)
+- Apenas para fazer fetch and cache (use query)
+
+---
+
+# Futuro do Redux
+
+- Redux Toolkit
+- RTK Query
+
+---
+
+# Finalização

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Redux Counter App</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="	https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="./style.css" />
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+	<div class="card">
+		<div class="row">
+			<div class="col-md-8 cart">
+				<div class="title">
+					<div class="row">
+						<div class="col">
+							<h4><b>Shopping Cart</b></h4> </div>
+						<div class="col align-self-center text-right text-muted itemsCounter">3 items</div>
+					</div>
+				</div>
+				<div class="row border-top border-bottom">
+					<div class="row main align-items-center">
+						<div class="col-2"><img class="img-fluid" src="https://i.imgur.com/1GrakTl.jpg"></div>
+						<div class="col">
+							<div class="row text-muted">Shirt</div>
+							<div class="row">Cotton T-shirt</div>
+						</div>
+						<div class="col">
+							<button class="decrement">-</button>
+              <a href="#" class="border"></a>1</a>
+							<button class="increment">+</button>
+						</div>
+						<div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="row main align-items-center">
+						<div class="col-2"><img class="img-fluid" src="https://i.imgur.com/ba3tvGm.jpg"></div>
+						<div class="col">
+							<div class="row text-muted">Shirt</div>
+							<div class="row">Cotton T-shirt</div>
+						</div>
+						<div class="col">
+							<button class="decrement">-</button><a href="#" class="border">1</a>
+							<button class="increment">+</button>
+						</div>
+						<div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
+					</div>
+				</div>
+
+
+			</div>
+			<div class="col-md-4 summary">
+				<div>
+					<h5><b>Summary</b></h5> </div>
+				<hr>
+				<form>
+					<p>SHIPPING</p>
+					<select>
+						<option class="text-muted">Standard-Delivery- &euro;5.00</option>
+					</select>
+					<p>GIVE CODE</p>
+					<input id="code" placeholder="Enter your code"> </form>
+				<div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+					<div class="col">TOTAL PRICE</div>
+					<div class="col text-right">&euro; <span class="total">132.00</span></div>
+				</div>
+				<button class="btn">CHECKOUT</button>
+			</div>
+		</div>
+	</div>
+<script src="./dom.js"></script>
+<script src="./index.js"></script>
+
+</html>
